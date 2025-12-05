@@ -1,0 +1,3 @@
+Bg = #1A2232
+button = #135BEC
+Left Nav (Hover/ active) = #11244B
