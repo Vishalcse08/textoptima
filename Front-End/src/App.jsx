@@ -1,8 +1,12 @@
 import React from 'react'
+import routes from './routes'
+
 
 const App = () => {
   return (
-    <div>App</div>
+    <div>
+        {routes()}
+    </div>
   )
 }
 
