@@ -1,11 +1,11 @@
 import React from 'react'
-import LoginPage from './components/LoginPage'
+import routes from './routes'
+
 
 const App = () => {
   return (
     <div>
-        <LoginPage/>
-
+        {routes()}
     </div>
   )
 }
