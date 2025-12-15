@@ -1,95 +1,173 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
+import { Sparkles } from "lucide-react";
 
 const LoginPage = () => {
-
-  const [isLogin, setIsLogin] = useState(true); 
+  const [isLogin, setIsLogin] = useState(true);
 
   return (
-    <>
-      <div className='grid grid-cols-2'>
-        
-        {/* Left Section */}
-        <div className="bg-[#0A0E14] w-[100%] flex text-white ">
-          <h1 className='text-[30px] mt-[30px] ml-[20px] font-bold'>TextOptima</h1>
+    <div className="lg:grid lg:grid-cols-2 min-h-screen">
+
+      {/* LEFT SECTION */}
+      <div className="
+        hidden lg:flex flex-col justify-between relative overflow-hidden
+        bg-[radial-gradient(circle_at_30%_30%,#5A9BFF,#2762E7,#1C47C8)]
+        text-white
+      ">
+
+        {/* Background glows */}
+        <div className="absolute -top-32 -left-32 w-[450px] h-[450px] bg-white/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-0 w-[350px] h-[350px] bg-blue-400/30 rounded-full blur-3xl"></div>
+
+        {/* Logo */}
+        <div className="flex items-center gap-3 mt-10 ml-12 z-10">
+          <div className="relative w-9 h-9 flex items-center justify-center">
+            <div className="absolute w-12 h-12 bg-white/40 blur-xl rounded-full"></div>
+            <Sparkles className="relative w-6 h-6" />
+          </div>
+          <h1 className="text-2xl font-semibold tracking-wide">
+            TextOptima
+          </h1>
         </div>
 
-        {/* Right Section */}
-        <div className="bg-[#111C22] w-[100%] h-[100vh] flex flex-col items-center p-[120px] text-white ">
+        {/* Hero Content (Bottom) */}
+        <div className="flex flex-col gap-6 mb-16 ml-12 max-w-[520px] z-10">
+          <span className="uppercase text-xs tracking-widest text-white/80">
+            AI Writing Assistant
+          </span>
 
-          {/* Dynamic heading */}
-          <h1 className='md:text-[45px] font-bold '>
-            {isLogin ? "Welcome Back" : "Create Account"}
+          <h1 className="text-[42px] font-bold leading-tight">
+            Enhance Your Writing <br />
+            with <span className="text-white/90">AI-Powered Precision</span>
           </h1>
 
-          <p className='text-[#7E8A96] tracking-[0.5px]'>
-            {isLogin
-              ? "Enter your credentials to access your account."
-              : "Fill the details to sign up."
-            }
+          <p className="text-base text-white/85 leading-relaxed">
+            Write smarter and faster with <span className="font-medium">TextOptima</span>.
+            Perfect grammar, tone, and clarity — every time.
           </p>
+        </div>
+      </div>
+
+      {/* RIGHT SECTION */}
+      <div className="
+        flex flex-col justify-center items-center
+        bg-white px-6 lg:px-28
+       h-[100vh]">
+
+        {/* Heading */}
+        <h1 className="text-3xl lg:text-4xl font-bold">
+          {isLogin ? "Welcome Back " : "Create Account "}
+        </h1>
+
+        <p className="text-gray-500 mt-2 text-sm lg:text-base">
+          {isLogin
+            ? "Enter your credentials to access your account."
+            : "Fill in the details to create your account."
+          }
+        </p>
+
+        {/* Form */}
+        <div className="mt-10 w-full max-w-md flex flex-col gap-5">
 
           {/* Email */}
-          <div className='flex flex-col gap-2 mt-10'>
-            <h1 className='font-semibold'>Email</h1>
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-medium">Email</label>
             <input
               type="email"
-              placeholder='example@gmail.com'
-              className='placeholder:text-[#435061] pl-[10px] w-[400px] border-[2px] border-[#2C3848] focus:outline-none h-[40px] bg-[#1E293B] rounded-[8px]'
+              placeholder="example@gmail.com"
+              className="
+                h-11 px-4 rounded-lg border border-gray-300
+                focus:outline-none focus:ring-2 focus:ring-blue-500
+                transition
+              "
             />
           </div>
 
           {/* Password */}
-          <div className='flex flex-col gap-2 mt-4'>
-            <h1 className='font-semibold'>Password</h1>
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-medium">Password</label>
             <input
               type="password"
-              placeholder='Enter your password'
-              className='placeholder:text-[#435061] pl-[10px] w-[400px] border-[2px] border-[#2C3848] focus:outline-none h-[40px] bg-[#1E293B] rounded-[8px]'
+              placeholder="Enter your password"
+              className="
+                h-11 px-4 rounded-lg border border-gray-300
+                focus:outline-none focus:ring-2 focus:ring-blue-500
+                transition
+              "
             />
           </div>
 
-          {/* Hide this part when Signup */}
+          {/* Remember / Forgot */}
           {isLogin && (
-            <div className='mt-4 flex gap-25 font-semibold'>
-              <div className='flex gap-1'>
-                <input type="checkbox" className='mr-2' />
-                <h1>Remember Me</h1>
-              </div>
-              <div>
-                <h3 className='text-[#16A1E2] cursor-pointer'>Forgot Password?</h3>
-              </div>
+            <div className="flex justify-between items-center text-sm">
+              <label className="flex items-center gap-2">
+                <input type="checkbox" />
+                Remember me
+              </label>
+              <span className="text-blue-600 cursor-pointer hover:underline">
+                Forgot password?
+              </span>
             </div>
           )}
 
           {/* Button */}
-          <div className='flex gap-4 mt-4'>
-            <button className='b-1 rounded-md p-2 bg-[#14A4EB] text-center text-white cursor-pointer w-[400px]'>
-              {isLogin ? "Login " : "Sign Up"}
-            </button>
+          <button className="
+            h-11 rounded-lg text-white font-medium
+            bg-gradient-to-r from-blue-500 to-blue-700
+            hover:shadow-lg hover:scale-[1.01]
+            transition
+          ">
+            {isLogin ? "Login" : "Sign Up"}
+          </button>
+
+          {/* Divider */}
+          <div className="flex items-center gap-3 text-gray-400 text-sm">
+            <div className="flex-1 h-px bg-gray-300"></div>
+            OR
+            <div className="flex-1 h-px bg-gray-300"></div>
           </div>
 
-          {/* Toggle Login/Signup */}
-          <div className='mt-4 flex'>
-            <h1 className='mt-4'>
-              {isLogin ? (
-                <>Don't have an account? <span
-                  className='text-[#16A1E2] font-semibold cursor-pointer'
+          {/* Google */}
+          <div className="
+            flex items-center justify-center gap-3
+            border border-gray-300 rounded-lg h-11
+            cursor-pointer hover:bg-gray-100 transition
+          ">
+            <img
+              src="./src/assets/Google_Favicon_2025.svg.png"
+              className="w-5 h-5"
+              alt="Google"
+            />
+            <span className="font-medium">Continue with Google</span>
+          </div>
+
+          {/* Toggle */}
+          <p className="text-sm text-center mt-4">
+            {isLogin ? (
+              <>
+                Don’t have an account?{" "}
+                <span
+                  className="font-semibold text-blue-600 cursor-pointer"
                   onClick={() => setIsLogin(false)}
-                >Sign Up</span></>
-              ) : (
-                <>Already have an account? <span
-                  className='text-[#16A1E2] font-semibold cursor-pointer'
+                >
+                  Sign Up
+                </span>
+              </>
+            ) : (
+              <>
+                Already have an account?{" "}
+                <span
+                  className="font-semibold text-blue-600 cursor-pointer"
                   onClick={() => setIsLogin(true)}
-                >Login</span></>
-              )}
-            </h1>
-          </div>
-
+                >
+                  Login
+                </span>
+              </>
+            )}
+          </p>
         </div>
-
       </div>
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default LoginPage
+export default LoginPage;
