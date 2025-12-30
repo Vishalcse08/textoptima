@@ -1,15 +1,24 @@
 import React from 'react'
-import LoginPage from './components/LoginPage'
-import Smarttext from './components/Smarttext'
-import SideNavbar from './components/SideNavbar'
-import DashBoard from './components/DashBoard'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import DashBoard from "./components/DashBoard";
+import Smarttext from "./pages/Smarttext";
+import GrammarCheck from "./pages/GrammarCheck";
+import EmailGenerator from "./pages/EmailGenerator";
+import QuickReply from "./pages/QuickReply";
+
 const routes = () => {
   return (
     <div>
-        {/* <Smarttext  path="/"/> */}
-        {/* <SideNavbar path="/"/> */}
-        {/* <LoginPage path="/" /> */}
-        <DashBoard path="/" />
+       <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<DashBoard />}>
+          <Route index element={<Smarttext />} />
+          <Route path="grammar" element={<GrammarCheck />} />
+          <Route path="email" element={<EmailGenerator />} />
+          <Route path="reply" element={<QuickReply />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
     </div>
   )
 }
