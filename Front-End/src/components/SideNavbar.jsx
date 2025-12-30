@@ -1,37 +1,80 @@
-import React from 'react'
-import { Sparkles, PencilIcon } from "lucide-react";
-const SideNavbar = () => {
+import React from "react";
+import {
+  Sparkles,
+  PenLine,
+  CheckCircle,
+  Mail,
+  MessageSquare,
+  X
+} from "lucide-react";
+import { NavLink } from "react-router-dom";
+
+const menuItems = [
+  { name: "Smart Rewriter", path: "/", icon: PenLine },
+  { name: "Grammar Check", path: "/grammar", icon: CheckCircle },
+  { name: "Email Generator", path: "/email", icon: Mail },
+  { name: "Quick Reply", path: "/reply", icon: MessageSquare },
+];
+
+const SideNavbar = ({ isOpen, onClose }) => {
   return (
-    <div className='w-[100%]'>
-        <div className='lg:w-[30%] md:w-[40%] border-[1px]  h-[100vh]'>
-            <div>
-                <div className='flex items-center gap-3   z-10 '>
-                     <Sparkles className=" w-7 h-7 text-blue-600" />
-                    <h1 className='text-[25px] font-semibold'>Text <span className="text-blue-600 text-[28px] font-bold">Optima</span></h1>
-                </div>
-                <div className='flex flex-col gap-[20px] mt-[50px] ml-[10px]'>
-                    <div className='flex gap-3'>
-                      <PencilIcon />
-                      <h1>Smart Rewritter</h1>
-                    </div>
-                    <div className='flex gap-3'>
-                      <PencilIcon />
-                      <h1>Grammer Check</h1>
-                    </div>
-                    <div className='flex gap-3'>
-                      <PencilIcon />
-                      <h1>Email Generator</h1>
-                    </div>
-                    <div className='flex gap-3'>
-                      <PencilIcon />
-                      <h1>Quick Reply</h1>
-                    </div>
+    <>
+      {/* Overlay (mobile) */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black/40 z-40 md:hidden"
+          onClick={onClose}
+        />
+      )}
 
-                </div>
-            </div>
+      {/* Sidebar */}
+      <aside
+        className={`
+          fixed md:static top-0 left-0 z-50
+          w-64 min-h-screen bg-white border-r px-6 py-4
+          transform transition-transform duration-300
+          ${isOpen ? "translate-x-0" : "-translate-x-full"}
+          md:translate-x-0
+        `}
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between mb-10">
+          <div className="flex items-center gap-3">
+            <Sparkles className="w-7 h-7 text-blue-600" />
+            <h1 className="text-xl font-semibold">
+              Text <span className="text-blue-600 font-bold">Optima</span>
+            </h1>
+          </div>
+
+          <button className="md:hidden" onClick={onClose}>
+            <X className="w-6 h-6 text-gray-600" />
+          </button>
         </div>
-    </div>
-  )
-}
 
-export default SideNavbar
+        {/* Menu */}
+        <nav className="flex flex-col gap-2">
+          {menuItems.map(({ name, path, icon: Icon }) => (
+            <NavLink
+              key={path}
+              to={path}
+              onClick={onClose}
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-3 py-2 rounded-md transition
+                ${
+                  isActive
+                    ? "bg-blue-600 text-white"
+                    : "text-gray-700 hover:bg-gray-100"
+                }`
+              }
+            >
+              <Icon className="w-5 h-5" />
+              <span className="text-sm font-medium">{name}</span>
+            </NavLink>
+          ))}
+        </nav>
+      </aside>
+    </>
+  );
+};
+
+export default SideNavbar;
